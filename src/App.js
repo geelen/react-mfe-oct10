@@ -1,25 +1,22 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
-import styles from './App.css'
-console.log(styles)
+import './App.css'
 
 const AppHeader = ({ greeting }) => (
-  <header className={styles.header}>
-    <img src={logo} className={styles.logo} alt="logo"/>
-    <h1 className={styles.title}>{ greeting }</h1>
+  <header className="App-header">
+    <img src={logo} className="App-logo" alt="logo"/>
+    <h1 className="App-title">{ greeting }</h1>
   </header>
 )
 
 const AppIntro = () => {
   console.log("Rendered AppIntro")
   return (
-    <p className={styles.intro}>
+    <p className="App-intro">
       To get started, edit <code>src/App.js</code> and save to reload.
     </p>
   )
 }
-
-const x = 5
 
 class App extends Component {
   state = {
@@ -46,7 +43,7 @@ class App extends Component {
   render() {
     console.log("Rendered!")
     return (
-      <div className={styles.wrapper}>
+      <div className="App">
         <AppHeader greeting={ this.state.greeting }/>
         <AppIntro/>
         <p onClick={this.handleClick}>Click here!!</p>
