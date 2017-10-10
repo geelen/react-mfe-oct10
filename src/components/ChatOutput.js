@@ -21,26 +21,7 @@ const Messages = styled.div`
   > :not(:first-child) { margin-top: 0.25rem; }
 `
 
-const entries = [
-  {
-    user_avatar: "http://fillmurray.com/128/128",
-    messages: [
-      "Line one",
-      "Line two",
-      "Line three",
-    ]
-  },
-  {
-    user_avatar: "http://fillmurray.com/132/132",
-    messages: [
-      "Line one",
-      "Line two",
-      "Line three",
-    ]
-  },
-]
-
-const ChatOutput = () => (
+const ChatOutput = ({ entries }) => (
   <Wrapper>
     {
       entries.map((entry, i) => (

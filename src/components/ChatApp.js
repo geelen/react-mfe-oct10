@@ -17,10 +17,31 @@ const Container = styled.div`
 `
 
 class ChatApp extends React.Component {
+  state = {
+    entries: [
+      {
+        user_avatar: "http://fillmurray.com/128/128",
+        messages: [
+          "Line one",
+          "Line two",
+          "Line three",
+        ]
+      },
+      {
+        user_avatar: "http://fillmurray.com/132/132",
+        messages: [
+          "Line one",
+          "Line two",
+          "Line three",
+        ]
+      },
+    ]
+  }
+
   render() {
     return (
       <Container>
-        <ChatOutput/>
+        <ChatOutput entries={this.state.entries}/>
         <ChatInput/>
       </Container>
     )
