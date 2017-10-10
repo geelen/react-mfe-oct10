@@ -5,7 +5,7 @@ import './App.css'
 const AppHeader = ({ greeting }) => (
   <header className="App-header">
     <img src={logo} className="App-logo" alt="logo"/>
-    <h1 className="App-title">{greeting}</h1>
+    <h1 className="App-title">{ greeting }</h1>
   </header>
 )
 
@@ -18,11 +18,9 @@ const AppIntro = () => {
   )
 }
 
-let hasEvenImported = false
 class App extends Component {
   state = {
     greeting: "Hi, Envato Class of 10th October!",
-    loadedLibrary: !!hasEvenImported,
   }
 
   handleClick = () => {
@@ -35,12 +33,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (!hasEvenImported) {
-      hasEvenImported = true
-      import('./some-expensive-dependency').then(lib => {
-        this.setState({loadedLibrary: lib.default})
-      })
-    }
+    // First time that the DOM is live
   }
 
   componentWillUnmount() {
@@ -49,11 +42,13 @@ class App extends Component {
 
   render() {
     console.log("Rendered!")
-    return !this.state.loadedLibrary
-      ? <p>Loading...</p>
-      : (
-        <SomeComponentThatRequires dependency={this.state.loadedLibrary}/>
-      )
+    return (
+      <div className="App">
+        <AppHeader greeting={ this.state.greeting }/>
+        <AppIntro/>
+        <p onClick={this.handleClick}>Click here!!</p>
+      </div>
+    )
   }
 }
 
