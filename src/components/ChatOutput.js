@@ -21,16 +21,41 @@ const Messages = styled.div`
   > :not(:first-child) { margin-top: 0.25rem; }
 `
 
+const entries = [
+  {
+    user_avatar: "http://fillmurray.com/128/128",
+    messages: [
+      "Line one",
+      "Line two",
+      "Line three",
+    ]
+  },
+  {
+    user_avatar: "http://fillmurray.com/132/132",
+    messages: [
+      "Line one",
+      "Line two",
+      "Line three",
+    ]
+  },
+]
+
 const ChatOutput = () => (
   <Wrapper>
-    <Entry>
-      <Avatar src="http://fillmurray.com/128/128"/>
-      <Messages>
-        <div>Line one</div>
-        <div>Line two</div>
-        <div>Line three</div>
-      </Messages>
-    </Entry>
+    {
+      entries.map((entry, i) => (
+        <Entry key={i}>
+          <Avatar src={ entry.user_avatar }/>
+          <Messages>
+            {
+              entry.messages.map((line, i) => (
+                <div key={i}>{ line }</div>
+              ))
+            }
+          </Messages>
+        </Entry>
+      ))
+    }
   </Wrapper>
 )
 
