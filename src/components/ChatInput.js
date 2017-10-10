@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { handleNewMessage } from '../actions'
 
 const Wrapper = styled.form`
   background: #444;
@@ -46,11 +47,9 @@ class ChatInput extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.onNewEntry({
+    handleNewMessage({
       user_avatar: "http://fillmurray.com/134/134",
-      messages: [
-        this.state.currentInput
-      ]
+      message: this.state.currentInput
     })
     this.setState({ currentInput: '' })
   }
@@ -61,15 +60,15 @@ class ChatInput extends React.Component {
 
   render() {
     return (
-      <Wrapper onSubmit={ this.handleSubmit }>
+      <Wrapper onSubmit={this.handleSubmit}>
         <Input>
           <input type="text"
-                 value={ this.state.currentInput }
-                 onChange={ this.handleInput }
+                 value={this.state.currentInput}
+                 onChange={this.handleInput}
           />
         </Input>
         <SubmitButton>
-          <button type="submit" onClick={ this.handleSubmit }>
+          <button type="submit" onClick={this.handleSubmit}>
             <span>➡</span>
           </button>
         </SubmitButton>

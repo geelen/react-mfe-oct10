@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
+import store from '../store'
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,10 +23,10 @@ const Messages = styled.div`
   > :not(:first-child) { margin-top: 0.25rem; }
 `
 
-const ChatOutput = ({ entries }) => (
+const ChatOutput = () => (
   <Wrapper>
     {
-      entries.map((entry, i) => (
+      store.entries.map((entry, i) => (
         <Entry key={i}>
           <Avatar src={entry.user_avatar}/>
           <Messages>
