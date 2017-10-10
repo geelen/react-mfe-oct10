@@ -1,4 +1,3 @@
-
 export default (old_state = {}, action) => {
   if (action.type === 'NEW_MESSAGE') {
 

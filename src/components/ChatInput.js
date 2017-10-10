@@ -78,6 +78,7 @@ class ChatInput extends React.Component {
   }
 }
 
-export default connect(null, {
-  handleNewMessage
-})(ChatInput)
+export default connect(
+  null,
+  { handleNewMessage }
+)(ChatInput)
