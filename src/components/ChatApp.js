@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { observable } from 'mobx'
+
 import ChatInput from './ChatInput'
 import ChatOutput from './ChatOutput'
 
@@ -16,38 +18,34 @@ const Container = styled.div`
   }
 `
 
-class ChatApp extends React.Component {
-  state = {
-    entries: [
-      {
-        user_avatar: "http://fillmurray.com/128/128",
-        messages: [
-          "Line one",
-          "Line two",
-          "Line three",
-        ]
-      },
-      {
-        user_avatar: "http://fillmurray.com/132/132",
-        messages: [
-          "Line one",
-          "Line two",
-          "Line three",
-        ]
-      },
+const entries = observable([
+  {
+    user_avatar: "http://fillmurray.com/128/128",
+    messages: [
+      "Line one",
+      "Line two",
+      "Line three",
     ]
-  }
+  },
+  {
+    user_avatar: "http://fillmurray.com/132/132",
+    messages: [
+      "Line one",
+      "Line two",
+      "Line three",
+    ]
+  },
+])
 
+class ChatApp extends React.Component {
   handleNewEntry = (entry) => {
-    this.setState({
-      entries: this.state.entries.concat(entry)
-    })
+    entries.push(entry)
   }
 
   render() {
     return (
       <Container>
-        <ChatOutput entries={this.state.entries}/>
+        <ChatOutput entries={entries}/>
         <ChatInput onNewEntry={this.handleNewEntry}/>
       </Container>
     )

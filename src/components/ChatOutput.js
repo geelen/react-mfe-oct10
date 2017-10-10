@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { observer } from 'mobx-react'
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,11 +27,11 @@ const ChatOutput = ({ entries }) => (
     {
       entries.map((entry, i) => (
         <Entry key={i}>
-          <Avatar src={ entry.user_avatar }/>
+          <Avatar src={entry.user_avatar}/>
           <Messages>
             {
               entry.messages.map((line, i) => (
-                <div key={i}>{ line }</div>
+                <div key={i}>{line}</div>
               ))
             }
           </Messages>
@@ -40,4 +41,4 @@ const ChatOutput = ({ entries }) => (
   </Wrapper>
 )
 
-export default ChatOutput
+export default observer(ChatOutput)
