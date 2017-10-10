@@ -22,7 +22,7 @@ const Messages = styled.div`
   > :not(:first-child) { margin-top: 0.25rem; }
 `
 
-const ChatOutput = ({ entries }) => (
+export const ChatOutput = ({ entries }) => (
   <Wrapper>
     {
       entries.map((entry, i) => (
