@@ -38,11 +38,17 @@ class ChatApp extends React.Component {
     ]
   }
 
+  handleNewEntry = (entry) => {
+    this.setState({
+      entries: this.state.entries.concat(entry)
+    })
+  }
+
   render() {
     return (
       <Container>
         <ChatOutput entries={this.state.entries}/>
-        <ChatInput/>
+        <ChatInput onNewEntry={this.handleNewEntry}/>
       </Container>
     )
   }

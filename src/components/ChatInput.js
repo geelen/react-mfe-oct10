@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+const Wrapper = styled.form`
   background: #444;
   display: flex;
   align-items: center;
@@ -41,17 +41,41 @@ const SubmitButton = styled.div`
   }
 `
 
-const ChatInput = () => (
-  <Wrapper>
-    <Input>
-      <input type="text"/>
-    </Input>
-    <SubmitButton>
-      <button type="submit" onClick={ console.log("Clicked!") }>
-        <span>➡</span>
-      </button>
-    </SubmitButton>
-  </Wrapper>
-)
+class ChatInput extends React.Component {
+  state = { currentInput: '' }
+
+  handleSubmit = event => {
+    event.preventDefault()
+    this.props.onNewEntry({
+      user_avatar: "http://fillmurray.com/134/134",
+      messages: [
+        this.state.currentInput
+      ]
+    })
+    this.setState({ currentInput: '' })
+  }
+
+  handleInput = event => {
+    this.setState({ currentInput: event.target.value })
+  }
+
+  render() {
+    return (
+      <Wrapper onSubmit={ this.handleSubmit }>
+        <Input>
+          <input type="text"
+                 value={ this.state.currentInput }
+                 onChange={ this.handleInput }
+          />
+        </Input>
+        <SubmitButton>
+          <button type="submit" onClick={ this.handleSubmit }>
+            <span>➡</span>
+          </button>
+        </SubmitButton>
+      </Wrapper>
+    )
+  }
+}
 
 export default ChatInput
