@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import ChatInput from './ChatInput'
+import ChatOutput from './ChatOutput'
 
 export const inputHeight = 4
 const Container = styled.div`
@@ -13,9 +14,6 @@ const Container = styled.div`
   > :nth-child(2) {
     height: ${inputHeight}rem;
   }
-`
-const ChatOutput = styled.div`
-  
 `
 
 class ChatApp extends React.Component {
