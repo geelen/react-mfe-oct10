@@ -44,7 +44,9 @@ class App extends Component {
     console.log("Rendered!")
     return (
       <div className="App">
-        <AppHeader greeting={ this.state.greeting }/>
+        <AppHeader
+          greeting={ this.state.greeting }
+        />
         <AppIntro/>
         <p onClick={this.handleClick}>Click here!!</p>
       </div>
