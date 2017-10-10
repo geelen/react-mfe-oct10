@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { observer } from 'mobx-react'
-import store from '../store'
+import { connect } from 'react-redux'
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,10 +22,10 @@ const Messages = styled.div`
   > :not(:first-child) { margin-top: 0.25rem; }
 `
 
-const ChatOutput = () => (
+const ChatOutput = ({ entries }) => (
   <Wrapper>
     {
-      store.entries.map((entry, i) => (
+      entries.map((entry, i) => (
         <Entry key={i}>
           <Avatar src={entry.user_avatar}/>
           <Messages>
@@ -42,4 +41,6 @@ const ChatOutput = () => (
   </Wrapper>
 )
 
-export default observer(ChatOutput)
+export default connect(state => ({
+  entries: state.entries
+}))(ChatOutput)

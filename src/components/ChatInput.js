@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { handleNewMessage } from '../actions'
+import { connect } from 'react-redux'
 
 const Wrapper = styled.form`
   background: #444;
@@ -47,7 +48,7 @@ class ChatInput extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    handleNewMessage({
+    this.props.handleNewMessage({
       user_avatar: "http://fillmurray.com/134/134",
       message: this.state.currentInput
     })
@@ -77,4 +78,6 @@ class ChatInput extends React.Component {
   }
 }
 
-export default ChatInput
+export default connect(null, {
+  handleNewMessage
+})(ChatInput)

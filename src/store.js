@@ -1,6 +1,10 @@
-import { observable } from 'mobx'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import logger from 'redux-logger'
 
-const store = observable({
+import reducers from './reducers'
+
+const DEFAULT_STATE = {
   entries: [
     {
       user_avatar: "http://fillmurray.com/128/128",
@@ -19,6 +23,12 @@ const store = observable({
       ]
     },
   ]
-})
+}
 
-export default store
+export const configureStore = () => {
+  return createStore(
+    reducers,
+    DEFAULT_STATE,
+    applyMiddleware(thunk, logger)
+  )
+}
